@@ -1,17 +1,17 @@
-$(document).ready(function() {
-    var input = $('input');
-    var messages = $('#messages');
+$(document).ready( () => {
+    let input = $('input');
+    let messages = $('#messages');
 
-    var addMessage = function(message) {
+    let addMessage = (message) => {
         messages.append('<div>' + message + '</div>');
     };
 
-    input.on('keydown', function(event) {
+    input.on('keydown', (event) => {
         if (event.keyCode != 13) {
             return;
         }
 
-        var message = input.val();
+        let message = input.val();
         addMessage(message);
         input.val('');
     });
