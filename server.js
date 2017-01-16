@@ -14,6 +14,7 @@ io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so
 
     socket.on('message', (message) => {
         console.log('Received message: ', message);
+        socket.broadcast.emit('message', message);  // Broadcast message to any other clients who are connected
     });
 });
 
