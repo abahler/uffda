@@ -1,0 +1,19 @@
+{
+  "name": "chatroom",
+  "version": "0.0.0",
+  "description": "A chat application using Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "socket.io"
+  ],
+  "author": "Alex Bahler",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.7.2"
+  }
+}
