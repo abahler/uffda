@@ -17,4 +17,7 @@ $(document).ready( () => {
         socket.emit('message', message);    // First arg is a name for our message. We'll keep it simple.
         input.val('');
     });
+    
+    socket.on('message', addMessage);   // When the server sends us a message with the name 'message', 
+                                        // we add the attached data to the proper div via addMessage
 });
