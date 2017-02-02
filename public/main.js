@@ -9,7 +9,7 @@ $(document).ready( () => {
 
     input.on('keydown', (event) => {
         if (event.keyCode != 13) {
-            return;
+            return; // Returns undefined, as opposed to `return false`
         }
 
         let message = input.val();

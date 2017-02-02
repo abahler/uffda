@@ -7,7 +7,7 @@ let app = express();
 app.use(express.static('public'));
 
 let server = http.Server(app);  // This will allow Socket.IO to run alongside express
-let io = socket_io(server);
+let io = socket_io(server);     // Create a Socket.IO server
 
 io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so we listen for events
     console.log('Client connected');
