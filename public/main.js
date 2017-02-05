@@ -3,9 +3,19 @@ $(document).ready( () => {
     let socket = io();  // Create a Manager object
     let input = $('input');
     let messages = $('#messages');
+    let usersOnline = $('#usersOnline');
 
     let addMessage = (message) => {
         messages.append('<div>' + message + '</div>');
+    };
+    
+    let addUserToList = (users) => {
+        console.log('The addUserToList function is being called!');
+        console.log('users: ', users);          // Are we even getting anything?
+        users.forEach( (v, i) => {
+            usersOnline.append('<li>' + v + '</li>');    
+        });
+        
     };
 
     input.on('keydown', (event) => {
@@ -21,4 +31,7 @@ $(document).ready( () => {
     
     socket.on('message', addMessage);   // When the server sends us a message with the name 'message', 
                                         // we add the attached data to the proper div via addMessage
+    
+    // When server sends us a message that a new user is online, let's add them to the list.
+    socket.on('newUserEntered', addUserToList);
 });
