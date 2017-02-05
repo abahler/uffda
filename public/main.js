@@ -1,3 +1,4 @@
+// Included in index.html, which loads jquery
 $(document).ready( () => {
     let socket = io();  // Create a Manager object
     let input = $('input');
