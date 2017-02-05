@@ -3,7 +3,8 @@ $(document).ready( () => {
     let socket = io();  // Create a Manager object
     let input = $('input');
     let messages = $('#messages');
-    let usersOnline = $('#usersOnline');
+    let userList = $('#userList');
+    let userCount = $('#userCount');
 
     let addMessage = (message) => {
         messages.append('<div>' + message + '</div>');
@@ -12,10 +13,7 @@ $(document).ready( () => {
     let showUserCount = (u) => {
         console.log('The showUserCount function is being called!');
         console.log('u: ', u);          // Are we even getting anything?
-        // users.forEach( (v, i) => {
-        //     usersOnline.append('<li>' + v + '</li>');    
-        // });
-        
+        userCount.html(u);
     };
 
     input.on('keydown', (event) => {
