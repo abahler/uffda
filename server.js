@@ -8,16 +8,9 @@ app.use(express.static('public'));
 
 let server = http.Server(app);  // This will allow Socket.IO to run alongside express
 let io = socket_io(server);     // Create a Socket.IO server
-
-/*
- * ENHANCEMENTS TO ADD:
- * 1. DONE - Show # of users online
- * 2. Add support for nicknames
- * 3. Show a '<user> is typing...' message whenever appropriate
- *
- */
  
-let users = [];
+let users = []; // Array to keep track of user names (nicknames)
+                // Needs to exist outside of any single connection
 
 io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so we listen for events
     console.log('Client connected');
@@ -32,13 +25,13 @@ io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so
     let clients = io.sockets.clients();
     let numUsers = clients.server.eio.clientsCount;
     
-    // console.log('this: ', this);     // 'this' is an empty object
+    // Push the number of users and the list of all nicknames out to connected clients
     io.emit('updateNumUsers', numUsers);  // Send message to ALL clients, including connected one
+    io.emit('updateUserList', users);
     
     socket.on('newNickname', function(nickname) {
         socket.nickname = nickname;
         users.push(socket.nickname);
-        console.log('Users: ', users);
         io.emit('updateUserList', users);
     });
 });
