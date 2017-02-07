@@ -1,4 +1,4 @@
-// Included in index.html, which loads jquery
+// Included in index.html, which loads jQuery. Ignore 'is not defined' errors.
 $(document).ready( () => {
     let socket = io();  // Create a Manager object
     let input = $('input');
@@ -24,14 +24,13 @@ $(document).ready( () => {
 
     input.on('keydown', (event) => {
         if (event.keyCode != 13) {
-            return; // Returns undefined, as opposed to `return false`
+            return; 
         }
 
         let message = input.val();
-        // Let users set nickname with string formatted like so "My name is: Alex"
+        // Let users set nickname with string formatted like so: "My name is: MyCoolNickname"
         // Don't print that special 'setter' message, but show any others
         if (message.indexOf('My nickname is: ') === 0) {
-            console.log('we have got a nickname setter!');
             let result = message.match(/\s(\w+)$/);
             let nickname = result[1];
             socket.emit('newNickname', nickname);
