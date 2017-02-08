@@ -29,7 +29,7 @@ io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so
     io.emit('updateNumUsers', numUsers);  // Send message to ALL clients, including connected one
     io.emit('updateUserList', users);
     
-    socket.on('newNickname', function(nickname) {
+    socket.on('newNickname', (nickname) => {
         socket.nickname = nickname;
         users.push(socket.nickname);
         io.emit('updateUserList', users);
