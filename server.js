@@ -13,10 +13,8 @@ let users = []; // Array to keep track of user names (nicknames)
                 // Needs to exist outside of any single connection
 
 io.on('connection', (socket) => {   // A Socket.IO server is an EventEmitter, so we listen for events
-    console.log('Client connected');
 
     socket.on('message', (message) => {
-        console.log('Received message: ', message);
         // Broadcast message to all clients except the one whose socket object we're using
         socket.broadcast.emit('message', message);  
     });
